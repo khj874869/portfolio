@@ -1,0 +1,15 @@
+@charset "UTF-8";		
+
+#left{
+	width:20%;
+}
+#middle{
+	width:60%;
+	margin-left: 20%;
+}
+#right{
+	width:20%;
+}
+#price{
+	width:30%;
+	}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+
+	<resultMap type="User" id="userResultMap">
+		<id 	property="userNo" 		column="USER_NO"/>
+		<result property="userId" 		column="USER_ID"/>
+		<result property="userPw" 		column="USER_PW"/>
+		<result property="userName" 	column="USER_NAME"/>
+		<result property="userGender" 	column="USER_GENDER"/>
+		<result property="userEmail" 	column="USER_EMAIL"/>
+		<result property="userPhone" 	column="USER_PHONE"/>
+		<result property="userAddr" 	column="USER_ADDR"/>
+		<result property="userHobby" 	column="USER_HOBBY"/>
+		<result property="createDate" 	column="CREATE_DATE"/>
+		<result property="userGrade" 	column="USER_GRADE"/>
+	</resultMap>
+	<!-- 회원가입 -->
+	<insert id="insertUser">
+		INSERT INTO USER_TBL VALUES(USER_NO_SEQ.NEXTVAL, #{userId}, #{userPw}, #{userName}, #{userGender}, #{userEmail}, #{userPhone}, #{userAddr}, #{userHobby}, DEFAULT, DEFAULT)
+	</insert>
+	<!-- 회원정보 수정 -->
+	<update id="updateUser">
+		UPDATE USER_TBL SET USER_PW = #{userPw}, USER_EMAIL = #{userEmail}, USER_PHONE = #{userPhone}, USER_ADDR = #{userAddr}, USER_HOBBY = #{userHobby} WHERE USER_ID = #{userId}
+	</update>
+	<!-- 회원정보 탈퇴 -->
+	<delete id="deleteUser">
+		DELETE FROM USER_TBL WHERE USER_ID = #{userId} 
+	</delete>
+	<!-- 회원 로그인 -->
+	<select id="loginUser" resultType="_int">
+		SELECT COUNT(*) FROM USER_TBL WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
+	</select>
+	<!-- 회원정보 조회 -->
+	<select id="selectOneById" resultMap="userResultMap">
+		SELECT * FROM USER_TBL WHERE USER_ID = #{userId}
+	</select>
+	<!-- 회원가입 아이디 유효성 체크 -->
+	<select id="userIdValid" resultType="_int">
+		SELECT COUNT(*) FROM USER_TBL WHERE USER_ID = #{userId}
+	</select>
+	<!-- 회원가입 이메일 유효성 체크 -->
+	<select id="userEmailValid" resultType="_int">
+		SELECT COUNT(*) FROM USER_TBL WHERE USER_EMAIL = #{userEmail}
+	</select>
+	<!-- 회원 아이디 찾기 -->
+	<select id="findUserId" resultType="String">
+		SELECT USER_ID FROM USER_TBL WHERE USER_EMAIL = #{userEmail}
+	</select>
+	<!-- 회원 비밀번호 찾기 -->
+	<select id="findUserPw" resultType="Map">
+		SELECT USER_PW FROM USER_TBL WHERE USER_ID = #{userId} AND USER_EMAIL = #{userEmail}
+	</select>
+	<!-- 회원 전체 수 조회 -->
+	<select id="getUserListCount" resultType="_int">
+		SELECT COUNT(*) FROM USER_TBL
+	</select>
+	<!-- 검색 회원 전체 수 조회 -->
+	<select id="getUserListCountByKeyword" resultType="_int">
+		SELECT COUNT(*) FROM USER_TBL WHERE USER_ID LIKE '%'||#{searchKeyword}||'%'
+	</select>
+	<!-- 회원 전체 조회 -->
+	<select id="selectUserList" resultMap="userResultMap">
+		SELECT * FROM USER_TBL ORDER BY USER_NO DESC
+	</select>
+	<!-- 검색 회원 조회 -->
+	<select id="searchUserByKeyword" resultMap="userResultMap">
+		SELECT * FROM USER_TBL WHERE USER_ID LIKE '%'||#{searchKeyword}||'%' ORDER BY USER_NO DESC
+	</select>
+</mapper>

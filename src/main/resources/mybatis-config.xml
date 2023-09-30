@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.alone.special.noticeEvent.domain.NoticeEvent" 			   alias="NoticeEvent"/>
+  		<typeAlias type="com.alone.special.hobby.domain.Reply" 			   			   alias="Reply"/>
+		<typeAlias type="com.alone.special.admin.domain.Singo" 			   			   alias="Singo"/>
+		<typeAlias type="com.alone.special.securitycomment.domain.Comment" 			   alias="Comment" />
+		<typeAlias type="com.alone.special.hobby.domain.Category" 					   alias="Category"/>
+		<typeAlias type="com.alone.special.hobby.domain.Board" 						   alias="Board"/>
+		<typeAlias type="com.alone.special.product.domain.Product" 					   alias="Product"/>
+		<typeAlias type="com.alone.special.review.domain.Review" 					   alias="Review"/>
+		<typeAlias type="com.alone.special.foodProduct.domain.FoodProduct" 			   alias="FoodProduct"/>
+		<typeAlias type="com.alone.special.foodProduct.domain.FoodProductFile" 		   alias="FoodProductFile"/>
+		<typeAlias type="com.alone.special.foodProduct.domain.FoodProductPhotoRev"     alias="FoodProductPhotoRev"/>
+		<typeAlias type="com.alone.special.foodProduct.domain.FoodProductPhotoRevFile" alias="FoodProductPhotoRevFile"/>
+		<typeAlias type="com.alone.special.foodProduct.domain.FoodProductOneRev" 	   alias="FoodProductOneRev"/>
+		<typeAlias type="com.alone.special.diner.domain.Diner" 						   alias="Diner"/>
+		<typeAlias type="com.alone.special.diner.domain.DinerFile" 					   alias="DinerFile"/>
+		<typeAlias type="com.alone.special.diner.domain.DinerRev" 					   alias="DinerRev"/>
+		<typeAlias type="com.alone.special.diner.domain.DinerRevFile" 				   alias="DinerRevFile"/>	
+		<typeAlias type="com.alone.special.user.domain.User" 						   alias="User"/>	
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mappers/noticeEvent-mapper.xml" />
+		<mapper resource="mappers/user-mapper.xml" />
+		<mapper resource="mappers/food/foodDiner-mapper.xml"/>
+		<mapper resource="mappers/food/foodProduct-mapper.xml"/>
+		<mapper resource="mappers/hobby/category-mapper.xml"/>
+    	<mapper resource="mappers/hobby/board-mapper.xml"/>
+    	<mapper resource="mappers/hobby/reply-mapper.xml"/>
+		<mapper resource="mappers/product-mapper.xml"/>
+		<mapper resource="mappers/review-mapper.xml"/>
+		<mapper resource="mappers/singo-mapper.xml"/>
+		<mapper resource="mappers/comment-mapper.xml"/>
+	</mappers>
+	
+</configuration>

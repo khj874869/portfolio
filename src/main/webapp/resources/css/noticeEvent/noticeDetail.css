@@ -1,0 +1,41 @@
+button:has(.fa-pen-to-square) {
+  background-color: orange;
+}
+button:has(.fa-trash) {
+  background-color: rgb(233, 105, 105);
+}
+.modify {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0px 50px;
+}
+.modify button {
+  border: none;
+  border-radius: 5px;
+  padding: 0px 15px;
+  margin-left: 20px;
+}
+.titlePassword {
+  background-color: #ccc;
+}
+  .back a {
+  text-decoration: none;
+}
+h2 b{
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 3rem;
+}
+#main_middle {
+  margin-top: 30px;
+}
+.back {
+  float: right;
+  color: rgb(2, 30, 25);
+  margin-right: 10%;
+  margin-top: 20px;
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 2rem;
+}
+main{
+	height: 80vh;
+}

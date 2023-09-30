@@ -1,0 +1,84 @@
+/* main */
+main {
+   width: 100%;
+   height: 100%;
+}
+main section {
+   padding: 10%;
+   text-align: center;
+}
+.container-main{
+	width: 100%;
+	height: 900px;
+	text-align: center;
+	background-image: url("../../images/user_images/5042356.jpg");
+}
+
+.loginArea{
+	margin: 0 auto;
+	width: 100%;
+	max-width: 400px;
+}
+
+input {
+	font-size: 15px;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    border: none;
+    background-color: lavender;
+}
+.in {
+    margin-bottom: 10px;
+}
+
+#btn {
+	font-size: 15px;
+    background-color: #1BBC9B;
+    margin-bottom: 30px;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    
+    &:hover {
+	    background-color: #FFA500; 호버 시 배경색 변경
+	    color: #fff;
+	}
+}
+
+h1 {
+	font-size: 25px;
+}
+
+h2 {
+	font-size: 20px;
+}
+
+.button {
+	font-size: 15px;
+  	display: inline-block;
+ 	padding: 10px 24px; /* 원하는 패딩 값으로 조절하세요 */
+  	background-color: #007bff; /* 배경색 설정 */
+  	color: #fff; /* 텍스트 색상 설정 */
+  	text-decoration: none; /* 밑줄 제거 */
+  	border: 1px solid #007bff; /* 테두리 설정 */
+  	border-radius: 15px; /* 버튼 모서리 둥글게 만들기 */
+  	font-weight: bold; /* 텍스트 굵기 설정 */
+  	cursor: pointer; /* 포인터 커서로 변경 */
+  	transition: background-color 0.3s, color 0.3s; /* 호버 효과를 위한 트랜지션 설정 */
+
+  	/* 호버 효과 스타일링 */
+  	&:hover {
+    	background-color: #0056b3; /* 호버 시 배경색 변경 */
+    	color: #fff; /* 호버 시 텍스트 색상 변경 */
+  }
+}
+.container {
+	font-family: 'Nanum Gothic Coding', cursive;
+	font-weight: bold;
+	font-size: 20px;
+}

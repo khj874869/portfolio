@@ -1,0 +1,46 @@
+h2 b{
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 3rem;
+  }
+  #main_middle {
+    margin-top: 30px;
+  }
+
+.search {
+    margin-left: 7%;
+}
+#findProduct {
+font-size: inherit;
+background-color: rgba(0,0,0,0);
+border: none;
+margin-left: 5px;
+}
+.eventNotice {
+   float: right;
+  	border-radius: 5px;
+   color: white;
+   background-color: gray;
+   margin-right: 10%;
+   font-family: 'Nanum Pen Script', cursive;
+   font-size: 1.8rem;
+}
+form{
+	margin-top : 30px;
+}
+ .col-md-4 a{
+  	text-decoration: none;
+  }
+.pageNavi a{
+	margin : 0 10px;
+	text-decoration: none;
+}
+.col-md-4>a:hover {
+    .card {
+        /* box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -15px 40px, 5px 5px 15px 5px rgba(0,0,0,0); */
+        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    }
+}
+.card-img-top{
+	height: 15rem;
+	object-fit: fill; /*cover 말고 fill 하면 꽉 채우기  */
+}

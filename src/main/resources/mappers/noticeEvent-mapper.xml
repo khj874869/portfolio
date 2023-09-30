@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeEventMapper">
+	<resultMap type="NoticeEvent" id="noticeEventResultMap">
+		<id property="boardNo" column="NE_BOARD_NO" />
+		<result property="boardTitle" column="NE_BOARD_TITLE" />	
+		<result property="boardContent" column="NE_BOARD_CONTENT" />	
+		<result property="boardWriter" column="NE_BOARD_WRITER" />	
+		<result property="boardFileName" column="NE_BOARD_FILENAME" />	
+		<result property="boardFileRename" column="NE_BOARD_FILERENAME"/>
+  		<result property="boardFilePath" column="NE_BOARD_FILEPATH"/>
+  		<result property="boardFileLength" column="NE_BOARD_FILELENGTH"/>
+  		<result property="bCreateDate" column="NE_B_CREATE_DATE"/>
+  		<result property="bUpdateDate" column="NE_B_UPDATE_DATE"/>
+  		<result property="boardType" column="NE_BOARD_TYPE"/>
+	</resultMap>
+	
+	<select id="selectNoticeListCount" resultType="_int">
+		SELECT COUNT(*) FROM NE_TBL WHERE NE_BOARD_TYPE = 'NOTICE'
+	</select>
+	
+	<select id="selectNoticeList" resultMap="noticeEventResultMap">
+		SELECT * FROM NE_TBL WHERE NE_BOARD_TYPE = 'NOTICE' ORDER BY NE_BOARD_NO DESC
+	</select>
+	
+	<select id="selectEventListCount" resultType="_int">
+		SELECT COUNT(*) FROM NE_TBL WHERE NE_BOARD_TYPE = 'EVENT'
+	</select>
+	
+	<select id="selectEventList" resultMap="noticeEventResultMap">
+		SELECT * FROM NE_TBL WHERE NE_BOARD_TYPE = 'EVENT' ORDER BY NE_BOARD_NO DESC
+	</select>
+	
+	<select id="getNoticeListCount" resultType="_int">
+		SELECT COUNT(*) FROM NE_TBL WHERE NE_BOARD_TYPE = 'NOTICE' AND NE_BOARD_TITLE LIKE '%'||#{searchKeyword}||'%'
+	</select>
+	
+	<select id="searchNoticeByKeyword" resultMap="noticeEventResultMap">
+		SELECT * FROM NE_TBL WHERE NE_BOARD_TYPE = 'NOTICE' AND NE_BOARD_TITLE LIKE '%'||#{searchKeyword}||'%' ORDER BY NE_BOARD_NO DESC
+	</select>
+	
+	<select id="getEventListCount" resultType="_int">
+		SELECT COUNT(*) FROM NE_TBL WHERE NE_BOARD_TYPE = 'EVENT' AND NE_BOARD_TITLE LIKE '%'||#{searchKeyword}||'%'
+	</select>
+	
+	<select id="searchEventByKeyword" resultMap="noticeEventResultMap">
+		SELECT * FROM NE_TBL WHERE NE_BOARD_TYPE = 'EVENT' AND NE_BOARD_TITLE LIKE '%'||#{searchKeyword}||'%' ORDER BY NE_BOARD_NO DESC
+	</select>
+
+	<select id="selectNoticeByNo" resultMap="noticeEventResultMap">
+		SELECT * FROM NE_TBL WHERE NE_BOARD_NO = #{boardNo}
+	</select>
+	
+	<delete id="deleteNotice">
+		DELETE FROM NE_TBL WHERE NE_BOARD_NO = #{boardNo}
+	</delete>
+	
+	<insert id="insertNoticeEvent">
+		INSERT INTO NE_TBL VALUES(SEQ_NE_BOARD_NO.NEXTVAL, #{boardTitle}, #{boardContent}, '관리자', #{boardFileName}, #{boardFileRename}, #{boardFilePath}, #{boardFileLength}, DEFAULT, DEFAULT, #{boardType})
+	</insert>
+	
+	<update id="modifyNoticeEvent">
+		UPDATE NE_TBL SET NE_BOARD_TITLE = #{boardTitle}, NE_BOARD_CONTENT = #{boardContent}, NE_BOARD_FILENAME = #{boardFileName}, NE_BOARD_FILERENAME = #{boardFileRename}, NE_BOARD_FILEPATH = #{boardFilePath}, NE_BOARD_FILELENGTH = #{boardFileLength}, NE_B_UPDATE_DATE = DEFAULT WHERE NE_BOARD_NO = #{boardNo}
+	</update>
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommentMapper"> 
+	
+	<resultMap type="Comment" id="commentResultMap">
+		<id property="sCommentNo" column="S_COMMENT_NO"/>
+    <result property="userNo" column="USER_NO"/>
+    <result property="userId" column="USER_ID"/>
+    <result property="sCommentContent" column="S_COMMENT_CONTENT"/>
+    <result property="sRecommend" column="S_RECOMMEND"/>
+    <result property="sCreateComment" column="S_CREATE_COMMENT"/>
+    <result property="sUpdateComment" column="S_UPDATE_COMMENT"/>
+	
+	
+	</resultMap>
+	
+	<select id="allListComment"  resultMap="commentResultMap">
+		SELECT * FROM S_COMMENT ORDER BY S_CREATE_COMMENT DESC
+	</select>
+	<select id="getSReplyListCount" resultType="_int">
+		SELECT COUNT (*) FROM S_COMMENT
+	</select>
+	<select id="getSReplyListCountByKeyword" resultType="_int">
+		SELECT COUNT (*) FROM S_COMMENT WHERE USER_ID LIKE '%'||#{searchKeyword}||'%'
+	</select>
+	<select id="getSReplyListByKeyword" resultMap="commentResultMap">
+		SELECT * FROM S_COMMENT WHERE USER_ID LIKE '%'||#{searchKeyword}||'%' ORDER BY S_CREATE_COMMENT DESC
+	</select>
+	<insert id="insertComment">
+	INSERT INTO S_COMMENT VALUES(SEQ_COMMENT.NEXTVAL,#{userNo},#{userId},#{sCommentContent},DEFAULT,DEFAULT,DEFAULT)
+	</insert>
+	<update id="updateComment">
+	UPDATE S_COMMENT SET S_COMMENT_CONTENT=#{sCommentContent} where S_COMMENT_NO=#{sCommentNo}
+	</update>
+	<delete id="deleteComment">
+	DELETE FROM S_COMMENT WHERE S_COMMENT_NO=#{sCommentNo}
+	</delete>
+	<update id="CommentLikeIncrement" parameterType="_int">
+    UPDATE S_COMMENT
+    SET S_RECOMMEND = COALESCE(S_RECOMMEND , 0) + 1
+    WHERE S_COMMENT_NO = #{sCommentNo}
+	</update>
+	<select id="getCommentLikeCount" parameterType="int" resultType="int">
+    SELECT S_RECOMMENT
+    FROM S_COMMENT
+    WHERE S_COMMENT_NO = #{sCommentNo}
+	</select>
+	<select id="selectCommentByKeyword" resultMap="commentResultMap">
+    SELECT *
+    FROM S_COMMENT
+    <where>
+        <choose>
+            <when test="searchCondition == 'Writer">
+          		 USER_ID '%'||#{searchKeyword}||'%'
+                ORDER BY S_CREATE_COMMENT DESC
+            </when>
+            <when test="searchCondition == 'content">
+                S_COMMENT_CONTENT LIKE '%'||#{searchKeyword}||'%'
+                ORDER BY S_CREATE_COMMENT DESC
+            </when>
+        </choose>
+    </where>
+</select>
+
+<select id="getSmapComment" resultMap="commentResultMap">
+    SELECT * FROM S_COMMENT
+</select>
+</mapper>

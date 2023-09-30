@@ -1,0 +1,99 @@
+main {
+  all: unset;
+}
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
+.section {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+#section1 {
+  background-image: url("/resources/images/history1.PNG");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+#section2 {
+  background-image: url("/resources/images/history2.PNG");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.reveal {
+  position: relative;
+  opacity: 0;
+}
+
+.reveal.active {
+opacity: 1;
+}
+.active.fade-bottom.one, .active.fade-bottom.oneL {
+animation: fade-bottom 1s ease-in;
+}
+.active.fade-bottom.two, .active.fade-bottom.twoR {
+  animation: fade-bottom 1.7s ease-in;
+  }
+.active.fade-bottom.three, .active.fade-bottom.threeL {
+  animation: fade-bottom 2.4s ease-in;
+  }
+  .active.fade-bottom.fourR {
+    animation: fade-bottom 2.8s ease-in;
+    }
+@keyframes fade-bottom {
+  0% {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.two {
+  text-align: center;
+}
+.three {
+  text-align: right;
+}
+.one, .two, .three {
+  padding: 1% 0;
+  width: 80%;
+  margin: 0 auto;
+}
+#section1 .set1 {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+.set1 h1, .set2 h1 {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 5rem;
+  text-shadow: 5px 5px 5px white;
+}
+#section2 .set2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+.oneL, .threeL {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+}
+.twoR, .fourR {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}

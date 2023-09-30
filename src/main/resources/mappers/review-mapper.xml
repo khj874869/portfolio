@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewMapper"> 
+	<resultMap id="ReviewResultMap" type="Review">
+    <id property="sReviewId" column="S_REVIEW_ID"/>
+    <result property="sProductId" column="S_PRODUCT_ID"/>
+    <result property="sUserNo" column="USER_NO"/>
+    <result property="sUserId" column="USER_ID"/>
+    <result property="sReviewContent" column="S_REVIEW_CONTENT"/>
+    <result property="sReviewReCommend" column="S_REVIEW_RECOMMEND"/>
+    <result property="sRating" column="S_RATING"/>
+    <result property="sFileName" column="S_FILE_NAME"/>
+    <result property="sFileReName" column="S_FILE_RENAME"/>
+    <result property="sFilePath" column="S_FILE_PATH"/>
+    <result property="sFileLength" column="S_FILE_LENGTH"/>
+    <result property="sCreateDate" column="S_CREATE_DATE"/>
+    <result property="sUpdateDate" column="S_UPDATE_DATE"/>
+</resultMap>
+	<insert id="insertReview" >
+    INSERT INTO S_REVIEW (
+      S_REVIEW_ID,
+      S_PRODUCT_ID,
+      USER_NO,
+      USER_ID,
+      S_REVIEW_CONTENT,
+      S_RATING,
+      S_FILE_NAME,
+      S_FILE_RENAME,
+      S_FILE_PATH,
+      S_FILE_LENGTH,
+      S_CREATE_DATE,
+      S_UPDATE_DATE
+    ) VALUES (
+      SEQ_REVIEW_NO.NEXTVAL,
+      #{sProductId},
+      #{sUserNo},
+      #{sUserId},
+      #{sReviewContent},
+      #{sRating},
+      #{sFileName},
+      #{sFileReName},
+      #{sFilePath},
+      #{sFileLength},
+      DEFAULT,
+      DEFAULT
+    )
+  </insert>
+
+	<select id="getReviewLikeCount" parameterType="int" resultType="int">
+    SELECT sReviewReCommend
+    FROM S_REVIEW
+    WHERE S_REVIEW_ID = #{sReviewId}
+	</select>
+	<select id="singoReview" resultMap="ReviewResultMap">
+	SELECT * 
+	FROM S_REVIEW 
+	WHERE S_REVIEW_ID = #{sReviewId}
+	</select>
+	<update id="incrementReviewLikeCount" parameterType="_int">
+    UPDATE S_REVIEW
+    SET S_REVIEW_RECOMMEND = COALESCE(S_REVIEW_RECOMMEND, 0) + 1
+    WHERE S_REVIEW_ID = #{sReviewId}
+	</update>
+	<select id="getProductReviews" resultMap="ReviewResultMap">
+    SELECT * FROM S_REVIEW
+    WHERE S_PRODUCT_ID = #{sProductId}
+</select>
+<select id="selectReviewListCount" resultType="_int"> 
+   		SELECT COUNT(*) FROM S_REVIEW
+    </select>
+    <update id="editReview">
+        UPDATE S_REVIEW
+        SET S_REVIEW_CONTENT= #{sReviewContent}, S_FILE_RENAME=#{sFileReName},
+      S_FILE_PATH=#{sFilePath},
+      S_FILE_LENGTH=#{sFileLength},S_CREATE_DATE =DEFAULT
+    	WHERE S_REVIEW_ID=#{sReviewId}
+    </update>
+    <delete id="deleteReview">
+    	DELETE FROM S_REVIEW WHERE S_REVIEW_ID = #{sReviewId}
+    </delete>
+    
+    <select id="getAllReviews" resultMap="ReviewResultMap">
+    	SELECT * FROM S_REVIEW
+    </select>
+    <select id="selectReviewListCountByKeyword" resultType="_int">
+    	SELECT COUNT(*) FROM S_REVIEW WHERE USER_ID LIKE '%'||#{searchKeyword}||'%'
+    </select>
+    <select id="getAllReviewsByKeyword" resultMap="ReviewResultMap">
+    	SELECT * FROM S_REVIEW WHERE USER_ID LIKE '%'||#{searchKeyword}||'%'
+    </select>
+</mapper>
+

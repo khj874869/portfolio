@@ -1,0 +1,42 @@
+/* main */
+main {
+    /* overflow : hidden + height : auto 했을때 높이 상관없이 요소들어갈때마다 자동으로 늘어남 */
+    /* overflow : clip 하면 hidden 적용 + sticky 사용할 수 있음 */
+    overflow:clip; 
+    height:auto;
+    display: flex;
+}
+    #main_left {
+        width: 20%;
+    }
+    #main_middle {
+        width: 60%;
+    }
+    #main_right {
+    	width: 20%;
+    }
+#main_left {
+  margin-top: 120px;
+}
+#main_left table {
+  border: 1px solid black;
+  width: 70%;
+  margin: 0 auto;
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: x-large;
+}
+#main_left th {
+  padding: 10px;
+  background-color: rgb(54, 219, 231);
+}
+#main_left td {
+  padding: 10px;
+  background-color: rgb(200, 199, 191);
+}
+#main_left a, tr a {
+  text-decoration: none;
+}
+#main_left td:hover {
+  
+  background-color: white;
+}

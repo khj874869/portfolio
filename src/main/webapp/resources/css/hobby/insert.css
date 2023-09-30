@@ -1,0 +1,124 @@
+/* main */
+main {
+   width: 100%;
+   height: 100%;
+}
+   .hobby_insert_left {
+      float: left;
+      width: 20%;
+      height: 100%;
+      /* border: 1px solid black; */
+      padding: 50px;
+   }
+      .hobby_board_title {
+         width: 100%;
+         height: 100px;
+         padding-top: 15px;
+         display: flex;
+         justify-content: center;
+         font-size: x-large;
+      }
+      .hobby_insert_nav {
+         width: 100%;
+         height: 100%;
+         padding: 40px;
+         border: 1px solid black;
+         border-radius: 10px;
+         display: none;
+      }
+         .hobby_insert_nav input {
+            margin: 10px 0 15px 0;
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid gray;
+         }
+   .hobby_insert_center {
+      float: left;
+      width: 60%;
+      height: 100%;
+      /* border: 1px solid black; */
+   }
+      .hobby_insert_center_top {
+         width: 100%;
+         height: 100px;
+         margin-top: 50px;
+      }
+      .hobby_insert_center table {
+         width: 100%;
+         height: 630px;
+         border: 1px solid gray;
+         /* text-align: center; */
+         padding: 50px;
+         border-radius: 10px;
+      }
+         .hobby_insert_table_category {
+            width: 20%;
+            height: 20%;
+            /* border: 1px solid black; */
+            padding: 5px;
+         }
+            .hobby_insert_table_category select {
+               width: 100%;
+               height: 100%;
+               padding: 5px;
+               border-radius: 5px;
+               border: 1px solid lightgray;
+            }
+         .hobby_insert_table_title {
+            width: 80%;
+            height: 20%;
+            /* border: 1px solid black; */
+            padding: 5px;
+         }
+            .hobby_insert_table_title input {
+               width: 100%;
+               height: 100%;
+               padding: 5px;
+               border-radius: 5px;
+               border: 1px solid lightgray;
+            }
+            .hobby_insert_table_content {
+               padding: 5px;
+            }
+               .hobby_insert_table_content textarea {
+                  width: 100%;
+                  height: 100%;
+                  padding: 80px;
+                  border: 1px solid lightgray;
+                  border-radius: 10px;
+               }
+      .hobby_insert_center_bottom {
+         width: 100%;
+         height: 100%;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+      }
+         .hobby_insert_center_bottom div {
+            float: left;
+            display: flex;
+            justify-content: center;
+            margin: 30px;
+            width: 25%;
+            text-align: center;
+         }
+            .hobby_insert_center_bottom div input[type="button"] {
+               padding: 5px 15px;
+               background-color: lightpink;
+               border-radius: 10px;
+               margin: 10px;
+               border: 0;
+            }
+            .hobby_insert_center_bottom div input[type="submit"] {
+               padding: 5px 15px;
+               background-color: lightsteelblue;
+               border-radius: 50%;
+               margin: 10px;
+               border: 0;
+            }
+   .hobby_insert_right {
+      float: left;
+      width: 20%;
+      height: 100%;
+   }

@@ -1,0 +1,52 @@
+h2 b{
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 3rem;
+  }
+  #main_middle {
+    margin-top: 30px;
+  }
+
+.search {
+    display: flex;
+    justify-content: space-around;
+}
+#findProduct {
+font-size: inherit;
+background-color: rgba(0,0,0,0);
+border: none;
+margin-left: 5px;
+}
+
+tfoot a{
+	margin : 0 10px;
+}
+  .manage {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .manage button {
+    border: none;
+    border-radius: 5px;
+    padding: 0px 10px;
+  }
+  .userDetail {
+    background-color: orange;
+    border-radius: 5px;
+    padding: 0px 5px;
+  }
+  .userDelete {
+    background-color: rgb(233, 105, 105);
+    border-radius: 5px;
+    padding: 0px 5px;
+  }
+td a{
+	text-decoration: none;
+}
+
+#boardType {
+	height:30px;
+}
+form input {
+	margin-left:-30%;
+	width: 110%;
+}

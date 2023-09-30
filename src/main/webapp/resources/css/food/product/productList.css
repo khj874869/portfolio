@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+main {
+	width: 1150px;
+    margin: 0 auto;
+	font-family: 'SUITE-Regular';
+}
+
+label {
+	display: block; /* 블록 요소로 설정하여 한 줄에 하나의 요소만 표시됩니다. */
+}
+
+h1 {
+	text-align: center;
+	font-size: 2em;
+}
+
+
+.btn1 {
+	padding: 10px;
+}
+
+#btn-delete {
+	float: right;
+}
+
+.nav_category {
+	margin-left: 20%;
+	margin-right: 20%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    background-color: #e2534e;
+}
+
+.nav_category ul {
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	margin: 5px;
+}
+
+.nav_category li {
+	margin: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#product_sort {
+	float: right;
+}
+
+.product_list {
+	display: flex;
+    flex-wrap: wrap; /* 상품이 넘칠 경우 다음 줄로 줄 바꿈되도록 설정 */
+    justify-content: space-between; /* 가로로 균등하게 배치 */
+}
+
+.product_item {
+	width: calc(33.33% - 20px); /* 한 줄에 3개의 상품이 오도록 너비 설정 */
+    margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+.image_thumbnail {
+	/* border: 1px solid black; */
+	width: 100%;
+	height: 60%;
+	padding: 15px;
+	/* margin: 30px; */
+	/* display: inline-block; */
+}
+
+.product_info {
+	/* margin: 10px; */
+	padding: 15px;
+	height: 40%;
+    text-align: center;
+	/* border: 1px solid black; */
+}
+
+img {
+	width: 100%;
+	height: 100%;
+}
+
+
+.pagination {
+    text-align: center; /* 텍스트를 가운데로 정렬 */
+}
+
+.pagination ul {
+    display: inline-block; /* ul 요소를 가로로 정렬 */
+    padding: 0; /* 기본 패딩 제거 */
+}
+
+.pagination ul li {
+    display: inline; /* 리스트 항목을 가로로 정렬 */
+    margin-right: 10px; /* 각 항목 사이의 오른쪽 여백 설정 */
+}
+
+.pagination ul li:last-child {
+    margin-right: 0; /* 마지막 항목에 오른쪽 여백 제거 */
+}
+.SMN_effect-13 a {
+    font-family: 'SUITE-Regular';
+    text-shadow: none;
+    padding: 10px 0;
+  }
+  
+  .SMN_effect-13 a:before {
+    color: #fff;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3);
+    content: attr(data-hover);
+    position: absolute;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .SMN_effect-13 a:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    opacity: 0;
+    -webkit-transform: translateY(5px);
+    -moz-transform: translateY(5px);
+    transform: translateY(5px);
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    pointer-events: none;
+  }
+  
+  .SMN_effect-13 a:hover:before, .SMN_effect-13 a:focus:before {
+    opacity: 0;
+    -webkit-transform: translateY(-2px);
+    -moz-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+  
+  .SMN_effect-13 a:hover:after, .SMN_effect-13 a:focus:after {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    transform: translateY(0px);
+  }

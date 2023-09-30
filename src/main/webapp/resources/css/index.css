@@ -1,0 +1,40 @@
+/* main */
+
+main section {
+	height: 1200px;
+	text-align: center;
+}
+
+.container {
+	font-family: 'Nanum Gothic Coding', cursive;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+/*--------페이드인아웃---------*/
+#index{
+	width: 1200px;
+	height: 400px;
+}
+
+#header_slide{
+    height: 100px;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 100px;
+    font-size: 1.5rem;
+}
+
+#slide_image {
+	width: 2114px;
+	height: 1200px;
+}
+
+#slide{
+    height: 300px;
+}
+
+#slide>ul>li{
+    position: absolute;
+    font-size: 0;
+}

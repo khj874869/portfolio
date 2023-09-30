@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CategoryMapper">
+
+  <resultMap type="Category" id="categoryResultMap">
+  	<id 	property="hCategoryName" 		column="H_CATEGORY_NAME" />
+  	<result property="hCategoryTag" 		column="H_CATEGORY_TAG" />
+  	<result property="hCategoryCreateDate" 	column="H_CATEGORY_CREATE_DATE" />
+  	<result property="hCategoryStatus" 		column="H_CATEGORY_STATUS" />
+  	<result property="hCategoryFilename" 	column="H_CATEGORY_FILENAME" />
+  	<result property="hCategoryFilepath" 	column="H_CATEGORY_FILEPATH" />
+  	<result property="hCategoryFilelength" 	column="H_CATEGORY_FILELENGTH" />
+  </resultMap>
+
+  <insert id="insertCategory">
+  	INSERT INTO H_CATEGORY_TBL VALUES ( #{ hCategoryName }, #{ hCategoryTag }, DEFAULT, DEFAULT, #{ hCategoryFilename }, #{ hCategoryFilepath }, #{ hCategoryFilelength })
+  </insert>
+  
+  <select id="selectAllCategoryList" resultMap="categoryResultMap">
+  	SELECT * FROM H_CATEGORY_TBL ORDER BY H_CATEGORY_CREATE_DATE DESC
+  </select>
+  
+  <select id="selectByTag" resultMap="categoryResultMap">
+  	SELECT * FROM H_CATEGORY_TBL WHERE H_CATEGORY_TAG = #{ hCategoryTag }
+  </select>
+  
+  <select id="searchByKeyword" resultMap="categoryResultMap">
+  	SELECT * FROM H_CATEGORY_TBL WHERE H_CATEGORY_NAME LIKE '%' || #{ hCategoryName } || '%'
+  </select>
+  
+  <delete id="deleteCategory">
+  	DELETE FROM H_CATEGORY_TBL WHERE H_CATEGORY_NAME = #{ hCategoryName}
+  </delete>
+  
+</mapper>

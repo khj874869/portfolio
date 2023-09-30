@@ -1,0 +1,126 @@
+/* main */
+main {
+   width: 100%;
+   height: 100%;
+}
+   .hobby_board_left {
+      float: left;
+      width: 20%;
+      height: 100%;
+      /* border: 1px solid black; */
+      padding: 50px;
+   }
+      .hobby_board_title {
+         width: 100%;
+         height: 100px;
+         padding-top: 15px;
+         display: flex;
+         justify-content: center;
+         font-size: x-large;
+      }
+      .hobby_board_bigNav {
+         width: 100%;
+         height: 100%;
+         border: 1px solid gray;
+         border-radius: 10px;
+      }
+         .hobby_board_memberInfo {
+            padding: 15px;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            margin: 30px 20px;
+         }
+         .hobby_board_insertBTN {
+            text-align: center;
+            margin: 30px 20px;
+         }
+            .hobby_board_insertBTN input {
+               padding: 15px;
+               width: 100%;
+               border-radius: 10px;
+               border: 1px solid #fcf8f0;
+            }
+         .hobby_board_searchOPT {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 20px 10px 20px;
+         }
+            .hobby_board_searchOPT select {
+               width: 40%;
+               height: 30px;
+               text-align: center;
+               border-radius: 5px;
+               border: 1px solid lightgray;
+            }
+         .hobby_board_searchBar {
+            height: 100%;
+            margin: 10px 20px 30px 20px;
+         }
+            .hobby_board_searchBar input[type="text"] {
+               width: 100%;
+               padding: 5px;
+               border-radius: 5px;
+               border: 1px solid lightgray;
+            }
+            .hobby_board_searchBar input[type="submit"] {
+               width: 100%;
+               padding: 5px;
+               border-radius: 5px;
+               border: 1px solid #fcf8f0;
+               margin-top: 10px;
+            }
+         .hobby_board_categorySelector {
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            margin: 30px 20px;
+         }
+            .hobby_board_categorySelector li {
+               margin: 15px;
+            }
+   .hobby_board_center {
+      float: left;
+      width: 60%;
+      height: 100%;
+      /* border: 1px solid black; */
+      /* position: relative; */
+   }
+      .hobby_board_center_top {
+         width: 100%;
+         height: 100px;
+         margin-top: 50px;
+      }
+      .hobby_board_center table {
+         width: 100%;
+         height: 630px;
+         border: 1px solid gray;
+         text-align: center;
+         padding: 50px;
+         border-radius: 10px;
+      }
+         .hobby_board_center th {
+            border-bottom: 1px solid gray;
+            padding-bottom: 20px;
+            width: 14%;
+         }
+         tr th:nth-child(2) {
+            width: 44%;
+         }
+      .hobby_board_center_bottom {
+         width: 100%;
+         height: 100%;
+         border: 1px solid white;
+      }
+         .hobby_board_listNav {
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+         }
+            .hobby_board_listNav a {
+               margin: 5px;
+            }
+   .hobby_board_right {
+      float: left;
+      width: 20%;
+      height: 100%;
+   }

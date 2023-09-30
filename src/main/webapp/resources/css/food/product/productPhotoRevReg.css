@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+label {
+	display: block; /* 블록 요소로 설정하여 한 줄에 하나의 요소만 표시됩니다. */
+}
+
+.image_thumbnail {
+	border: 1px solid black;
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+	/* display: inline-block; */
+}
+
+h1 {
+	text-align: center;
+	font-size: 2em;
+}
+
+main {
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+.btn1 {
+	padding: 10px;
+}
+
+#btn-delete {
+	float: right;
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SingoMapper">
+	<resultMap type="Singo" id="singoResultMap">
+		<id property="singoNo" column="SINGO_NO" />
+		<result property="singoReason" column="SINGO_REASON" />	
+		<result property="singoContent" column="SINGO_CONTENT" />	
+		<result property="singoLocation" column="SINGO_LOCATION" />	
+		<result property="singoLocationTitle" column="SINGO_LOCATION_TITLE" />	
+		<result property="singoId" column="SINGO_ID" />	
+	</resultMap>
+	
+	<select id="getSingoListCount" resultType="_int">
+		SELECT COUNT(*) FROM SINGO_TBL
+	</select>
+	
+	<select id="getSingoListCountByKeyword" resultType="_int">
+		SELECT COUNT(*) FROM SINGO_TBL WHERE SINGO_ID LIKE '%'||#{searchKeyword}||'%'
+	</select>
+	
+	<select id="selectSingoList" resultMap="singoResultMap">
+		SELECT * FROM SINGO_TBL ORDER BY SINGO_NO DESC
+	</select>
+		
+	<select id="selectSingoListByKeyword" resultMap="singoResultMap">
+		SELECT * FROM SINGO_TBL WHERE SINGO_ID LIKE '%'||#{searchKeyword}||'%' ORDER BY SINGO_NO DESC
+	</select>
+	
+	<insert id="insertSingo">
+		INSERT INTO SINGO_TBL VALUES(SEQ_SINGO_NO.NEXTVAL, #{singoReason}, #{singoContent}, #{singoLocation}, #{singoLocationTitle}, #{singoId})
+	</insert>
+	
+	<delete id="deleteSingo">
+		DELETE FROM SINGO_TBL WHERE SINGO_NO = #{singoNo}
+	</delete>
+	
+
+</mapper>

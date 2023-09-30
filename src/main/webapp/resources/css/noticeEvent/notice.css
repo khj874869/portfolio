@@ -1,0 +1,36 @@
+h2 b{
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 3rem;
+  }
+  #main_middle {
+    margin-top: 30px;
+  }
+
+.search {
+    margin-left: 7%;
+}
+#findProduct {
+font-size: inherit;
+background-color: rgba(0,0,0,0);
+border: none;
+margin-left: 5px;
+}
+ .insertNotice {
+    float: right;
+   	border-radius: 5px;
+    color: white;
+    background-color: gray;
+    margin-right: 10%;
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 1.8rem;
+    margin-top:-40px;
+  }
+form{
+	margin-top : 30px;
+}
+#main_middle td a{
+  	text-decoration: none;
+  }
+tfoot a{
+	margin : 0 10px;
+}

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+
+  <resultMap type="Board" id="boardResultMap">
+   <id   property="hBoardNo"        		column="H_BOARD_NO" />
+   <result property="refCategoryName"     column="REF_CATEGORY_NAME" />
+   <result property="hBoardCategory"      column="H_BOARD_CATEGORY" />
+   <result property="hBoardWriter"     		column="H_BOARD_WRITER" />
+   <result property="hBoardTitle"         column="H_BOARD_TITLE" />
+   <result property="hBoardContent"       column="H_BOARD_CONTENT" />
+   <result property="hBoardReplyNum"      column="H_BOARD_REPLY_NUM" />
+   <result property="hGroupTime"          column="H_GROUP_TIME" />
+   <result property="hGroupPlace"         column="H_GROUP_PLACE" />
+   <result property="hGroupPersonNum"     column="H_GROUP_PERSON_NUM" />
+   <result property="hGroupApplyPerson"   column="H_GROUP_APPLY_PERSON" />
+   <result property="hGroupApplyPersonNum" column="H_GROUP_APPLY_PERSON_NUM" />
+   <result property="hBoardCreateDate"    column="H_BOARD_CREATE_DATE" />
+   <result property="hBoardUpdateDate"    column="H_BOARD_UPDATE_DATE" />
+   <result property="hBoardStatus"     		column="H_BOARD_STATUS" />
+   <result property="hBoardFilename"      column="H_BOARD_FILENAME" />
+   <result property="hBoardFilerename"    column="H_BOARD_FILERENAME" />
+   <result property="hBoardFilepath"      column="H_BOARD_FILEPATH" />
+   <result property="hBoardFilelength"    column="H_BOARD_FILELENGTH" />
+  </resultMap>
+  
+  <!-- 게시물 삭제 관리자가 -->
+  <update id="deleteBoardByAdmin">
+      UPDATE H_BOARD_TBL SET H_BOARD_STATUS = 'N' WHERE H_BOARD_NO = #{ hBoardNo }
+  </update>
+  <!-- 전체 게시물 -->
+  <select id="selectAllBoardListForAdmin" resultMap="boardResultMap">
+      SELECT * FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
+  </select>
+  <!-- 전체 게시물 갯수 -->
+  <select id="getListCountForAdmin" resultType="_int">   
+   SELECT COUNT(*) FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y'
+  </select>
+  <!-- 카테고리별 전체 게시물 -->
+  <select id="selectBoardListByCategoryForAdmin" resultMap="boardResultMap">
+   SELECT * FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y' AND REF_CATEGORY_NAME LIKE '%'||#{ refCategoryName }||'%' ORDER BY H_BOARD_NO DESC
+  </select>
+  <!-- 카테고리별 전체 게시물 갯수 -->
+  <select id="getListCount" resultType="_int">
+   SELECT COUNT(*) FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y' AND REF_CATEGORY_NAME LIKE '%'||#{ refCategoryName }||'%'
+  </select>
+  
+  <select id="selectBoardList" resultMap="boardResultMap">
+   SELECT * FROM H_BOARD_TBL WHERE H_BOARD_STATUS = 'Y' AND REF_CATEGORY_NAME = #{ refCategoryName } ORDER BY H_BOARD_NO DESC
+  </select>
+  
+  <insert id="insertBoard">
+   INSERT INTO H_BOARD_TBL VALUES
+   (SEQ_H_BOARD_NO.NEXTVAL, #{ refCategoryName }, #{ hBoardCategory }, #{ hBoardWriter }, #{ hBoardTitle }, #{ hBoardContent }, 
+   #{ hBoardReplyNum }, #{ hGroupTime }, #{ hGroupPlace }, #{ hGroupPersonNum }, NULL, DEFAULT, DEFAULT, DEFAULT, 
+   DEFAULT, #{ hBoardFilename }, #{ hBoardFilerename }, #{ hBoardFilepath }, #{ hBoardFilelength })
+  </insert>
+  
+  <select id="selectBoardByNo" resultMap="boardResultMap">
+   SELECT * FROM H_BOARD_TBL WHERE H_BOARD_NO = #{ hBoardNo } AND H_BOARD_STATUS = 'Y'
+  </select>
+  
+  <update id="updateBoard">
+   UPDATE H_BOARD_TBL SET H_BOARD_TITLE = #{ hBoardTitle }, H_BOARD_CONTENT = #{ hBoardContent }, H_GROUP_TIME = #{hGroupTime}, H_GROUP_PLACE = #{hGroupPlace}, H_GROUP_PERSON_NUM = #{hGroupPersonNum}, H_BOARD_FILENAME = #{ hBoardFilename }, H_BOARD_FILERENAME = #{ hBoardFilerename }, H_BOARD_FILEPATH = #{ hBoardFilepath }, H_BOARD_FILELENGTH = #{ hBoardFilelength }, H_BOARD_UPDATE_DATE = DEFAULT WHERE H_BOARD_NO = #{ hBoardNo }
+  </update>
+  
+  <update id="deleteBoard">
+   UPDATE H_BOARD_TBL SET H_BOARD_STATUS = 'N' WHERE H_BOARD_NO = #{ hBoardNo } AND H_BOARD_WRITER = #{ hBoardWriter }
+  </update>
+  
+  <select id="getListCountByKeyword" resultType="_int">
+   SELECT COUNT(*) FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_CATEGORY = #{ searchCondition1 }
+   <if test="searchCondition2 == 'all'">
+         AND H_BOARD_TITLE LIKE '%'||#{ searchKeyword }||'%' OR H_BOARD_WRITER LIKE '%'||#{ searchKeyword }||'%' OR H_BOARD_CONTENT LIKE '%'||#{ searchKeyword }||'%' AND H_BOARD_STATUS = 'Y'
+      </if>
+      <if test="searchCondition2 == 'writer'">
+         AND H_BOARD_WRITER LIKE '%'||#{ searchKeyword }||'%' AND H_BOARD_STATUS = 'Y'
+      </if>
+      <if test="searchCondition2 == 'title'">
+         AND H_BOARD_TITLE LIKE '%'||#{ searchKeyword }||'%' AND H_BOARD_STATUS = 'Y'
+      </if>
+      <if test="searchCondition2 == 'content'">
+         AND H_BOARD_CONTENT LIKE '%'||#{ searchKeyword }||'%' AND H_BOARD_STATUS = 'Y'
+      </if>
+  </select>
+  
+  <select id="searchBoardsByKeyword" resultMap="boardResultMap">
+      SELECT * FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_CATEGORY = #{ searchCondition1 }
+      <if test="searchCondition2 == 'all'">
+         AND H_BOARD_TITLE LIKE '%'||#{ searchKeyword }||'%' OR H_BOARD_WRITER LIKE '%'||#{ searchKeyword }||'%' OR H_BOARD_CONTENT LIKE '%'||#{ searchKeyword }||'%' AND H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
+      </if>
+      <if test="searchCondition2 == 'writer'">
+         AND H_BOARD_WRITER LIKE '%'||#{ searchKeyword }||'%' AND H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
+      </if>
+      <if test="searchCondition2 == 'title'">
+         AND H_BOARD_TITLE LIKE '%'||#{ searchKeyword }||'%' AND H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
+      </if>
+      <if test="searchCondition2 == 'content'">
+         AND H_BOARD_CONTENT LIKE '%'||#{ searchKeyword }||'%' AND H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
+      </if>
+  </select>
+  
+  <update id="updateApplyInfo">
+   UPDATE H_BOARD_TBL SET H_GROUP_APPLY_PERSON = #{ hGroupApplyPerson }, H_GROUP_APPLY_PERSON_NUM = #{ hGroupApplyPersonNum } WHERE H_BOARD_NO = #{ hBoardNo }
+  </update>
+  
+  <insert id="createAutoBoard">
+   INSERT INTO H_BOARD_TBL VALUES
+   (SEQ_H_BOARD_NO.NEXTVAL, #{ refCategoryName }, '소모임', #{ hBoardWriter }, #{ hBoardTitle }||'의 소모임', #{ hBoardContent }, 
+   DEFAULT, #{ hGroupTime }, #{ hGroupPlace }, #{ hGroupPersonNum }, #{ hGroupApplyPerson }, #{ hGroupApplyPersonNum }, DEFAULT, DEFAULT, 
+   DEFAULT, NULL, NULL, NULL, NULL)
+  </insert>
+  
+  <select id="getListCountByCondition" resultType="_int">
+   <if test="searchCondition1 == 'all'">
+         SELECT COUNT(*) FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_STATUS = 'Y'
+      </if>
+      <if test="searchCondition1 != 'all'">
+         SELECT COUNT(*) FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_CATEGORY = #{ searchCondition1 } AND H_BOARD_STATUS = 'Y'
+      </if>
+  </select>
+  
+  <select id="searchBoardsByCondition" resultMap="boardResultMap">
+      <if test="searchCondition1 == 'all'">
+         SELECT * FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
+      </if>
+      <if test="searchCondition1 != 'all'">
+         SELECT * FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_CATEGORY = #{ searchCondition1 } AND H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
+      </if>
+  </select>
+  
+  <update id="updateReplyNum">
+   UPDATE H_BOARD_TBL SET H_BOARD_REPLY_NUM = #{ replyTotalCount } WHERE H_BOARD_NO = #{ refBoardNo }
+  </update>
+  
+  <delete id="deleteBoardByCategoryDelete">
+   DELETE FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ hCategoryName }
+  </delete>
+  
+  <select id="getListCountBySession" resultType="_int">
+   SELECT COUNT(*) FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_WRITER = #{ hBoardWriter } AND H_BOARD_STATUS = 'Y'
+  </select>
+  
+  <select id="searchBoardsBySession" resultMap="boardResultMap">
+      SELECT * FROM H_BOARD_TBL WHERE REF_CATEGORY_NAME = #{ refCategoryName } AND H_BOARD_WRITER = #{ hBoardWriter } AND H_BOARD_STATUS = 'Y' ORDER BY H_BOARD_NO DESC
+  </select>
+  
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductMapper"> 
+
+    <resultMap type="Product" id="productResultMap" >
+	    <id 	property="sProductId" 			 column="S_PRODUCT_ID" />
+	    <result property="sProductName" 		 column="S_PRODUCT_NAME" />
+	    <result property="sFileName" 			 column="S_P_FILE_NAME" />
+	    <result property="sFileReName" 			 column="S_P_FILE_RENAME" />
+	    <result property="sFilePath" 			 column="S_P_FILE_PATH" />
+	    <result property="sFileLength" 			 column="S_P_FILE_LENGTH" />
+	    <result property="sDescription" 		 column="S_DESCRIPTION" />
+	    <result property="sPrice" 				 column="S_PRICE" />
+	    <result property="sProductAverageRating" column="S_PRODUCT_AVERAGE_RATING" />
+	</resultMap>
+	
+    <insert id="insertProduct">
+   		INSERT INTO S_PRODUCT VALUES (SEQ_S_PRODUCT.NEXTVAL, #{sProductName}, #{sFileName}, #{sFileReName}, #{sFilePath}, #{sFileLength}, #{sDescription}, #{sPrice}, DEFAULT)
+	</insert>
+
+   <select id="selectProductById" resultMap="productResultMap">
+    	SELECT * FROM S_PRODUCT WHERE S_PRODUCT_ID = #{sProductId}
+	</select>
+
+    <update id="updateProduct" >
+        UPDATE S_PRODUCT SET S_PRODUCT_NAME = #{sProductName},S_P_FILE_NAME=#{sFileName},S_P_FILE_RENAME=#{sFileReName}, S_DESCRIPTION = #{sDescription},S_P_FILE_PATH=#{sFilePath},S_P_FILE_LENGTH=#{sFileLength}, S_PRICE = #{sPrice} WHERE S_PRODUCT_ID = #{sProductId}
+    </update>
+
+    <delete id="deleteProduct">
+        DELETE FROM S_PRODUCT WHERE S_PRODUCT_ID = #{sProductId}
+    </delete>
+    
+    <select id="selectListCount" resultType="_int"> 
+   		SELECT COUNT(*) FROM S_PRODUCT
+    </select>
+    
+    <select id="selectProductList" resultMap="productResultMap">
+    	SELECT * FROM S_PRODUCT ORDER BY S_PRODUCT_AVERAGE_RATING DESC
+    </select>
+    
+	
+	<select id="selectProductByKeyword" resultMap="productResultMap">
+    SELECT * FROM S_PRODUCT
+    <choose>
+        <when test="searchCondition == 'all'">
+            WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' OR S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%'
+        </when>
+        <when test="searchCondition == 'title'">
+            WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%'
+        </when>
+        <when test="searchCondition == 'content'">
+            WHERE S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%'
+        </when>
+        <otherwise>
+        </otherwise>
+    </choose>
+</select>
+
+
+
+<select id="selectListByKeywordCount" resultType="_int">
+SELECT COUNT(*) FROM S_PRODUCT 
+<if test="searchCondition == 'all'">WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%'  OR S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </if>
+
+<if test="searchCondition == 'title'">WHERE S_PRODUCT_NAME LIKE '%'||#{searchKeyword }||'%' </if>
+
+<if test="searchCondition == 'content'">WHERE S_DESCRIPTION LIKE '%'||#{searchKeyword }||'%' </if>
+
+</select>
+
+	
+</mapper>
